@@ -69,18 +69,13 @@ int main(int argc, char** argv)
     if (std::holds_alternative<msceqf::Imu>(data))
     {
       auto imu = std::get<msceqf::Imu>(data);
-    //   std::cout << "got imu\n";
       sys.processMeasurement(imu);
     }
     else if (std::holds_alternative<msceqf::Camera>(data))
     {
-        // std::cout << "got cam\n";
       sys.processMeasurement(std::get<msceqf::Camera>(data));
-      // auto est_position = sys.getPosition();
-      // std::cout << "est_position: " << est_position << "\n";
       if (sys.isInit())
       {
-        std::cout << "Intialized system\n";
         auto est_position = sys.getPosition();
         result_writer << timestamp << est_position << std::endl;
       }
