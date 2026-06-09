@@ -43,15 +43,7 @@ int main(int argc, char** argv)
 
   const std::vector<std::string> cam_header = {"#timestamp [ns]", "filename"};
 
-  std::vector<std::string> results_titles = {"t",  "p_x",   "p_y", "p_z"};
-
-  for (int i = 1; i <= 9; i++)
-  {
-    for (int j = 1; j <= 9; j++)
-    {
-      results_titles.emplace_back("P_" + std::to_string(i) + std::to_string(j));
-    }
-  }
+  std::vector<std::string> results_titles = {"t",  "p_x",   "p_y", "p_z", "q_x", "q_y", "q_z", "q_w"};
 
   utils::dataParser dataset_parser(imu_path, groundtruth_path, cam_path, cam_image_path, imu_header, groundtruth_header,
                                    cam_header);
@@ -77,7 +69,8 @@ int main(int argc, char** argv)
       if (sys.isInit())
       {
         auto est_position = sys.getPosition();
-        result_writer << timestamp << est_position << std::endl;
+        auto est_orientation = sys.getAttitude();
+        result_writer << timestamp << est_position << est_orientation << std::endl;
       }
     //   sys.visualizeImageWithTracks(std::get<msceqf::Camera>(data));
     }
