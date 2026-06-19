@@ -2,7 +2,7 @@
 
 verbosity: "INFO"
 
-use_fej: false
+use_fej: true
 integration: "rk4"
 use_stereo: false
 max_cameras: 1

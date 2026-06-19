@@ -2,7 +2,7 @@
 
 verbosity: "INFO"
 
-use_fej: false
+use_fej: true
 integration: "rk4"
 use_stereo: false
 max_cameras: 1
@@ -17,7 +17,7 @@ max_clones: 11
 max_slam: 0
 max_slam_in_update: 0
 max_msckf_in_update: 40
-dt_slam_delay: 1
+dt_slam_delay: 2
 
 gravity_mag: 9.8065
 
